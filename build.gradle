@@ -1,0 +1,47 @@
+
+apply from: 'versions-plugin.gradle'
+
+buildscript {
+
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.13.0'
+    }
+
+}
+
+
+allprojects {
+
+    apply plugin: 'idea'
+
+    repositories {
+        mavenLocal()
+        jcenter()
+
+    }
+
+}
+
+
+subprojects {
+
+    apply from: "$rootDir/dependencies.gradle"
+
+    apply plugin: 'groovy'
+    apply plugin: "jacoco"
+    apply plugin: "idea"
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.13'
+}
