@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>TBS API</title>
+</head>
+<body>
+<h1> TBS api</h1>
+<p>
+    <a href="/tbs/docs/index.html">API documentation</a>
+</p>
+</body>
+</html>

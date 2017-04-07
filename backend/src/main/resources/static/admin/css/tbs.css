@@ -1,0 +1,60 @@
+body {
+    padding-top: 50px;
+}
+
+.two-columns tr td:first-of-type {
+    font-weight: bold;
+}
+
+.panel-footer {
+    position: absolute;
+    width: 100%;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.main-div {
+    margin: 0 20px;
+}
+
+.margin-bottom-5 {
+    margin-bottom: 5px;
+}
+
+table.table-bordered.dataTable {
+    border-collapse: collapse !important;
+}
+
+#tasksList pre {
+    padding: 0;
+    margin: 0;
+}
+
+#batchList td,
+#tasksList td {
+    padding: 4px;
+}
+
+#batchList .rerunBtn {
+    padding: 0 6px;
+}
+
+@media print {
+    body {
+        padding-top: 0px
+    }
+
+    a[href]:after {
+        content: "";
+    }
+
+    .container {
+        width: 100%
+    }
+
+    .main-div {
+        margin: 0px;
+    }
+}

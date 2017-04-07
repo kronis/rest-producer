@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TBS Admin</title>
+</head>
+<body>
+
+<!--
+Sjekk https://github.com/thymeleaf/thymeleaf-extras-springsecurity
+-->
+
+<h1>Hei <span th:text="${#httpServletRequest.remoteUser}"/></h1>
+
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Logout"/>
+</form>
+
+
+</body>
+</html>

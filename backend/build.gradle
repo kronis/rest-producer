@@ -1,0 +1,86 @@
+
+
+buildscript {
+
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+
+
+    dependencies {
+        classpath buildLibraries.boot_gradle_plugin
+    }
+}
+
+plugins {
+	id "com.gorylenko.gradle-git-properties" version "1.4.17"
+}
+
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId 'no.tine.hystrix'
+            artifactId 'rest-producer'
+            from components.java
+        }
+    }
+}
+
+apply plugin: 'org.springframework.boot'
+
+ext {
+	snippetsDir = file('build/generated-snippets')
+}
+
+
+sourceSets {
+}
+
+
+configurations {
+}
+
+processResources {
+    filesMatching('application*.properties') { file -> file.expand(project.properties) }
+}
+
+dependencies {
+    compile libraries.spring,
+            libraries.boot_autoconfigure,
+            libraries.boot_web,
+            libraries.rest,
+            libraries.http_builder,
+            libraries.groovy,
+            libraries.spring_boot_admin
+}
+
+
+test {
+    jacoco {
+        append = false
+    }
+
+    outputs.dir snippetsDir
+}
+
+jar {
+}
+
+bootRun {
+    if (project.hasProperty('profile')) {
+        args "--spring.profiles.active=${project.profile}"
+    }
+    systemProperties = System.properties
+}
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = file("$buildDir/classes/main/")
+        testSourceDirs += file('src/integration-test/groovy')
+        downloadSources = true
+    }
+}

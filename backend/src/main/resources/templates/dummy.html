@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Getting Started: Serving Web Content</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    </head>
+    <body>
+        <h3 th:text="'Hello, ' + ${name} + '!'"/>
+
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="dummy : ${dummies}">
+                <td th:text="${dummy.id}"/>
+                <td th:text="${dummy.name}"/>
+                <td th:text="${dummy.value}"/>
+            </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
