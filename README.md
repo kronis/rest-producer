@@ -2,12 +2,6 @@
 
 To run locally:
 ```
-cd migration && gw bootRun && cd ../backend && gw bootRun -Pembedded
+$ ../gradlew bootRun
 ```
-
-note: Remove from .gitignore: 
-```sh
-gradle/
-gradlew
-gradlew.bat
-```
+http://localhost:9090/my-dummy-api/greeting/asd2
