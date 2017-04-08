@@ -1,5 +1,3 @@
-
-
 buildscript {
 
     repositories {
@@ -10,11 +8,12 @@ buildscript {
 
     dependencies {
         classpath buildLibraries.boot_gradle_plugin
+        classpath buildLibraries.docker
     }
 }
 
 plugins {
-	id "com.gorylenko.gradle-git-properties" version "1.4.17"
+    id "com.gorylenko.gradle-git-properties" version "1.4.17"
 }
 
 apply plugin: 'maven-publish'
@@ -32,7 +31,7 @@ publishing {
 apply plugin: 'org.springframework.boot'
 
 ext {
-	snippetsDir = file('build/generated-snippets')
+    snippetsDir = file('build/generated-snippets')
 }
 
 
@@ -84,3 +83,18 @@ idea {
         downloadSources = true
     }
 }
+
+apply plugin: 'docker'
+task buildDocker(type: Docker) {
+    baseImage = 'develar/java:latest'
+    push = project.hasProperty('push')
+    tag = 'ehv5de64442b6.azurecr.io/kronis/rest-producer'
+    addFile {
+        from jar
+        rename { 'app.jar' }
+    }
+    entryPoint(['java', '-Djava.security.egd=file:/dev/./urandom', '-jar', '/app.jar'])
+    exposePort(8080)
+}
+
+buildDocker.dependsOn(build)
