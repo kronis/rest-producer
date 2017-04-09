@@ -1,14 +1,12 @@
 buildscript {
-
     repositories {
         mavenLocal()
         jcenter()
     }
 
-
     dependencies {
         classpath buildLibraries.boot_gradle_plugin
-        classpath buildLibraries.docker
+//        classpath buildLibraries.docker
     }
 }
 
@@ -66,6 +64,8 @@ test {
 }
 
 jar {
+    archiveName = "app.jar"
+//    baseName = "app"
 }
 
 bootRun {
@@ -84,17 +84,17 @@ idea {
     }
 }
 
-apply plugin: 'docker'
-task buildDocker(type: Docker) {
-    baseImage = 'develar/java:latest'
-    push = project.hasProperty('push')
-    tag = 'ehv5de64442b6.azurecr.io/kronis/rest-producer'
-    addFile {
-        from jar
-        rename { 'app.jar' }
-    }
-    entryPoint(['java', '-Djava.security.egd=file:/dev/./urandom', '-jar', '/app.jar'])
-    exposePort(8080)
-}
-
-buildDocker.dependsOn(build)
+//apply plugin: 'docker'
+//task buildDocker(type: Docker) {
+//    baseImage = 'develar/java:latest'
+//    push = project.hasProperty('push')
+//    tag = 'ehv5de64442b6.azurecr.io/kronis/rest-producer'
+//    addFile {
+//        from jar
+//        rename { 'app.jar' }
+//    }
+//    entryPoint(['java', '-Djava.security.egd=file:/dev/./urandom', '-jar', '/app.jar'])
+//    exposePort(8080)
+//}
+//
+//buildDocker.dependsOn(build)
