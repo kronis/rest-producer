@@ -28,5 +28,4 @@ ext.libraries = [
 
 ext.buildLibraries = [
         boot_gradle_plugin: "org.springframework.boot:spring-boot-gradle-plugin:${spring_boot}"
-//        docker            : "se.transmode.gradle:gradle-docker:1.2"
 ]

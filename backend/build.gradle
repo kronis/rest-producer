@@ -6,7 +6,6 @@ buildscript {
 
     dependencies {
         classpath buildLibraries.boot_gradle_plugin
-//        classpath buildLibraries.docker
     }
 }
 
@@ -54,7 +53,6 @@ dependencies {
             libraries.spring_boot_admin
 }
 
-
 test {
     jacoco {
         append = false
@@ -64,8 +62,7 @@ test {
 }
 
 jar {
-    archiveName = "app.jar"
-//    baseName = "app"
+    archiveName = "app.jar" // "Added" with Dockerfile to image
 }
 
 bootRun {
@@ -83,18 +80,3 @@ idea {
         downloadSources = true
     }
 }
-
-//apply plugin: 'docker'
-//task buildDocker(type: Docker) {
-//    baseImage = 'develar/java:latest'
-//    push = project.hasProperty('push')
-//    tag = 'ehv5de64442b6.azurecr.io/kronis/rest-producer'
-//    addFile {
-//        from jar
-//        rename { 'app.jar' }
-//    }
-//    entryPoint(['java', '-Djava.security.egd=file:/dev/./urandom', '-jar', '/app.jar'])
-//    exposePort(8080)
-//}
-//
-//buildDocker.dependsOn(build)

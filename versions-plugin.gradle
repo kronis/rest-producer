@@ -1,6 +1,5 @@
 apply plugin: 'com.github.ben-manes.versions'
 
-
 // Excludes non-release versions (alpha, beta, rc, etc.). Copied from https://github.com/ben-manes/gradle-versions-plugin
 dependencyUpdates.resolutionStrategy = {
     componentSelection { rules ->
