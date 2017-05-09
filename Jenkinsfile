@@ -3,14 +3,17 @@ node {
 
   stage('Clone') {
     checkout scm
+  }
+
+  stage('Build') {
     sh "./gradlew build"
   }
 
-  stage('Push image') {
-    app = docker.build('test')
+  stage('Build image') {
+    app = docker.build("${env.JOB_NAME}")
   }
 
-  stage('Docker push') {
+  stage('Push docker image') {
     docker.withRegistry('https://tinetrm.azurecr.io', 'azure-container-registry') {
       app.push("${env.BUILD_NUMBER}")
       app.push("latest")
