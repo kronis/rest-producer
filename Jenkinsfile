@@ -9,6 +9,10 @@ node {
     sh "./gradlew build"
   }
 
+  stage('Maven publish') {
+    sh "./gradlew publish"
+  }
+
   stage('Build image') {
     app = docker.build("${env.JOB_NAME}")
   }
